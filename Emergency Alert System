@@ -1,0 +1,55 @@
+Description 📜
+Added new features to enhance the Blood Donation Android Application:
+
+Implemented real-time blood request notifications
+Added emergency contact management system
+Integrated blood bank location mapping
+Created blood donation history tracking
+
+Fixes #456 (Blood Request Alert System Enhancement)
+<hr>
+Type of change 📝
+
+ Documentation (Content Creation in the form of codes or tutorials)
+ Other (Android App Feature Implementation)
+
+<hr>
+Domain of Contribution 📊
+
+ Android Dev (Flutter, Java, Kotlin)
+ Frontend Dev (HTML, CSS, JS)
+ Database
+
+<hr>
+Checklist ✅
+
+ I follow Contributing Guidelines & Code of conduct of this project.
+ I have performed a self-review of my own code or work.
+ I have commented my code, particularly in hard-to-understand areas.
+ My changes generates no new warnings.
+ I'm GWOC'21 contributor
+
+<hr>
+Code Contribution Details
+1. Emergency Alert System
+public class EmergencyAlertSystem {
+    private FirebaseMessaging firebaseMessaging;
+    private NotificationManager notificationManager;
+    
+    public void sendBloodRequest(BloodRequest request) {
+        // Create notification payload
+        Map<String, String> data = new HashMap<>();
+        data.put("bloodType", request.getBloodType());
+        data.put("location", request.getLocation());
+        data.put("urgency", request.getUrgency());
+        
+        // Send to nearby donors
+        NotificationMessage message = NotificationMessage.builder()
+            .setData(data)
+            .setTitle("Urgent Blood Required: " + request.getBloodType())
+            .setBody("Location: " + request.getLocation())
+            .build();
+            
+        firebaseMessaging.send(message);
+    }
+}
